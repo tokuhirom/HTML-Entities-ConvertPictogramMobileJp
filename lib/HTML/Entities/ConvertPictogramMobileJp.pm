@@ -21,7 +21,7 @@ sub convert_pictogram_entities {
         if ($agent->is_softbank) {
             _convert_unicode('softbank', $2)
         } elsif ($agent->is_ezweb) {
-            _convert_unicode('kddi', $2)
+            sprintf '&#x%X;', unpack 'U*', decode "x-sjis-kddi-cp932-raw", encode( "x-sjis-kddi-auto", chr( hex $2 ));
         } elsif ($agent->is_docomo && $agent->is_foma) {
             _convert_unicode('docomo', $2)
         } elsif (($agent->is_docomo && !$agent->is_foma) || $agent->is_airh_phone) {
@@ -68,19 +68,7 @@ HTML::Entities::ConvertPictogramMobileJp - convert pictogram entities
 
 HTML::Entities::ConvertPictogramMobileJp is Japanese mobile phone's pictogram converter.
 
-HTML 中にふくまれる絵文字の Unicode 16進数値文字参照を、キャリヤ相互に変換します。
-
-KDDI の絵文字領域は SoftBank の絵文字の Unicode とかぶっているため、 KDDI の絵文字が HTML
-中に含まれていても変換しません。悪しからず。DoCoMo/SoftBank から KDDI の絵文字への変換
-には対応しています。 KDDI からの絵文字変換を行いたい場合には KDDI-Auto を使用してください。
-KDDI-Auto に関しては、L<Encode::JP::Mobile> のドキュメントを参照してください。
-
-    o DoCoMo => KDDI
-    o DoCoMo => SoftBank
-    o SoftBank => KDDI
-    o SoftBank => DoCoMo
-    x KDDI => SoftBank
-    x KDDI => DoCoMo
+HTML 中にふくまれる絵文字の Unicode 16進数値文字参照の DoCoMo 絵文字を、SoftBank/KDDI の絵文字に変換します。
 
 DoCoMo Mova/AirHPhone の場合には、 Unicode 実体参照ではなく SJIS の実体参照に変換して出力
 することに注意してください。これは、該当機種が、 SJIS の実体参照でないと表示できないためです。

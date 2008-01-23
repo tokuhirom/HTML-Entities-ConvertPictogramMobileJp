@@ -29,7 +29,7 @@ html: "&#xE63E;&#xE65C;"
 --- input
 user_agent: KDDI-SA31 UP.Browser/6.2.0.7.3.129 (GUI) MMP/2.0
 html: "&#xE63E;&#xE65C;"
---- expected: &#xEF60;&#xF0EC;
+--- expected: &#xE488;&#xE5BC;
 
 === i2i(foma)
 --- input
@@ -48,10 +48,4 @@ html: "&#xE63E;&#xE65C;"
 user_agent: Mozilla/3.0(WILLCOM;SANYO/WX310SA/2;1/1/C128) NetFront/3.3
 html: "&#xE63E;&#xE65C;"
 --- expected: &#xF89F;&#xF8BD;
-
-=== v2i(foma)
---- input
-user_agent: DoCoMo/2.0 SH903i(c100;TB;W24H16)
-html: "&#xE537;"
---- expected: &#xE732;
 
