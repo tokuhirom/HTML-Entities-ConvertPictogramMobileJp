@@ -29,7 +29,7 @@ html: "&#xE63E;&#xE65C;"
 --- input
 user_agent: KDDI-SA31 UP.Browser/6.2.0.7.3.129 (GUI) MMP/2.0
 html: "&#xE63E;&#xE65C;"
---- expected: &#xE488;&#xE5BC;
+--- expected: <img localsrc="44" /><img localsrc="341" />
 
 === i2i(foma)
 --- input
@@ -53,7 +53,7 @@ html: "&#xE63E;&#xE65C;"
 --- input
 user_agent: KDDI-SA31 UP.Browser/6.2.0.7.3.129 (GUI) MMP/2.0
 html: "&#xE722;"
---- expected: &#xE471;&#xE5B1;
+--- expected: <img localsrc="257" /><img localsrc="330" />
 
 === i2v, pair
 --- input
