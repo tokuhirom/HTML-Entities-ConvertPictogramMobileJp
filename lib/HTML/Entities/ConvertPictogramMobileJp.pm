@@ -22,12 +22,11 @@ sub convert_pictogram_entities {
         if ($agent->is_softbank) {
             _convert_unicode('softbank', $2)
         } elsif ($agent->is_ezweb) {
-            join '', map {
-                sprintf '<img localsrc="%d" />',
-                  Encode::JP::Mobile::Character->from_unicode( unpack 'U*', $_ )->number
-              }
-              split //, decode "x-sjis-kddi-auto-raw",
-              encode( "x-sjis-kddi-auto", chr( hex $2 ) );
+            join '', map { sprintf '<img localsrc="%d" />', $_ }
+              map { Encode::JP::Mobile::Character->from_unicode($_)->number }
+              map { unpack 'U*', $_ }
+              split //, decode "x-utf8-kddi",
+              encode( "x-utf8-kddi", chr( hex $2 ) );
         } elsif ($agent->is_docomo && $agent->is_foma) {
             _convert_unicode('docomo', $2)
         } elsif (($agent->is_docomo && !$agent->is_foma) || $agent->is_airh_phone) {
