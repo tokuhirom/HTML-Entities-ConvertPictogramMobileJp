@@ -1,4 +1,12 @@
 Revision history for Perl extension HTML::Entities::ConvertPictogramMobileJp
 
+0.03
+
+    - support pair of the pictograms.
+
+0.02
+
+    - oops. ezweb phone can't display KDDI-Auto character reference.
+
 0.01    Wed Jan 23 12:21:55 2008
         - original version
