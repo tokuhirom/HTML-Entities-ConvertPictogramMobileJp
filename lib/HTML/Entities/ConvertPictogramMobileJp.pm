@@ -1,7 +1,7 @@
 package HTML::Entities::ConvertPictogramMobileJp;
 use strict;
 use warnings;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 use Encode;
 use Encode::JP::Mobile;
 use Params::Validate;
@@ -21,7 +21,8 @@ sub convert_pictogram_entities {
         if ($agent->is_softbank) {
             _convert_unicode('softbank', $2)
         } elsif ($agent->is_ezweb) {
-            sprintf '&#x%X;', unpack 'U*', decode "x-sjis-kddi-cp932-raw", encode( "x-sjis-kddi-auto", chr( hex $2 ));
+            join '', map { sprintf( '&#x%X;', unpack( 'U*', $_ ) ) } split //,
+              decode "x-sjis-kddi-cp932-raw", encode( "x-sjis-kddi-auto", chr( hex $2 ) );
         } elsif ($agent->is_docomo && $agent->is_foma) {
             _convert_unicode('docomo', $2)
         } elsif (($agent->is_docomo && !$agent->is_foma) || $agent->is_airh_phone) {
@@ -35,7 +36,8 @@ sub convert_pictogram_entities {
 
 sub _convert_unicode {
     my ($carrier, $unihex) = @_;
-    sprintf '&#x%X;', unpack 'U*', decode "x-utf8-$carrier", encode( "x-utf8-$carrier", chr( hex $unihex ));
+    join '', map { sprintf '&#x%X;', unpack 'U*', $_ } split //,
+      decode "x-utf8-$carrier", encode( "x-utf8-$carrier", chr( hex $unihex ) );
 }
 
 sub _convert_sjis {
