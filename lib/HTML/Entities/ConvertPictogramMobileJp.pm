@@ -55,7 +55,7 @@ __END__
 
 =encoding utf8
 
-=for stopwords utf8 pictogram DoCoMo KDDI SJIS SoftBank Unicode KDDI-Auto
+=for stopwords utf8 pictogram DoCoMo KDDI SJIS SoftBank Unicode KDDI-Auto au
 
 =head1 NAME
 
