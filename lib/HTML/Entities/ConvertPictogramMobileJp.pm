@@ -79,6 +79,8 @@ HTML 中にふくまれる絵文字の Unicode 16進数値文字参照の DoCoMo
 DoCoMo Mova/AirHPhone の場合には、 Unicode 実体参照ではなく SJIS の実体参照に変換して出力
 することに注意してください。これは、該当機種が、 SJIS の実体参照でないと表示できないためです。
 
+au の一部端末(W41CA, W32H など) では Unicode 実体参照が表示できないため、<img localsrc="" /> 形式を採用しています。
+
 =head1 AUTHOR
 
 Tokuhiro Matsuno E<lt>tokuhirom@gmail.comE<gt>
