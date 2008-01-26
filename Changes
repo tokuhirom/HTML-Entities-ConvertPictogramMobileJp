@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Entities::ConvertPictogramMobileJp
 
+0.04
+
+    - fixed build dependencies(YAML).
+
 0.03
 
     - support pair of the pictograms.
