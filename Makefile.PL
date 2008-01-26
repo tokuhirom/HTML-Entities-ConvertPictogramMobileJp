@@ -7,6 +7,7 @@ requires 'HTTP::MobileAgent';
 requires 'Params::Validate';
 
 build_requires 'Test::More';
+build_requires 'YAML';
 use_test_base;
 auto_include;
 WriteAll;
