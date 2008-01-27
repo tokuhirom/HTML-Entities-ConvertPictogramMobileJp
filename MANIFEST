@@ -17,6 +17,7 @@ inc/Test/Builder/Module.pm
 inc/Test/More.pm
 inc/YAML.pm
 lib/HTML/Entities/ConvertPictogramMobileJp.pm
+lib/HTML/Entities/ConvertPictogramMobileJp/KDDITABLE.pm
 Makefile.PL
 MANIFEST			This list of files
 META.yml
