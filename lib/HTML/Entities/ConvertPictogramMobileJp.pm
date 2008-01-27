@@ -4,8 +4,9 @@ use warnings;
 our $VERSION = '0.04';
 use Encode;
 use Encode::JP::Mobile;
-use Encode::JP::Mobile::Character;
 use Params::Validate;
+use HTML::Entities::ConvertPictogramMobileJp::KDDITABLE;
+use File::ShareDir qw/dist_file/;
 use base 'Exporter';
 our @EXPORT = qw/convert_pictogram_entities/;
 
@@ -23,7 +24,7 @@ sub convert_pictogram_entities {
             _convert_unicode('softbank', $2)
         } elsif ($agent->is_ezweb) {
             join '', map { sprintf '<img localsrc="%d" />', $_ }
-              map { Encode::JP::Mobile::Character->from_unicode($_)->number }
+              map { _ezuni2number($_) }
               map { unpack 'U*', $_ }
               split //, decode "x-utf8-kddi",
               encode( "x-utf8-kddi", chr( hex $2 ) );
@@ -36,6 +37,11 @@ sub convert_pictogram_entities {
         }
     }ge;
     $content;
+}
+
+sub _ezuni2number {
+    my $unicode = shift;
+    $HTML::Entities::ConvertPictogramMobileJp::KDDITABLE::TABLE->{$unicode};
 }
 
 sub _convert_unicode {
