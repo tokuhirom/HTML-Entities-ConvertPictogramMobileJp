@@ -55,8 +55,21 @@ user_agent: KDDI-SA31 UP.Browser/6.2.0.7.3.129 (GUI) MMP/2.0
 html: "&#xE722;"
 --- expected: <img localsrc="257" /><img localsrc="330" />
 
+=== i2e, no match
+--- input
+user_agent: KDDI-SA31 UP.Browser/6.2.0.7.3.129 (GUI) MMP/2.0
+html: "&#x2528;"
+--- expected: &#x2528;
+
 === i2v, pair
 --- input
 user_agent: Vodafone/1.0/V904SH/SHJ001/SN123456789012 Browser/VF-NetFront/3.3 Profile/MIDP-2.0 Configuration/CLDC-1.1
 html: "&#xE722;"
 --- expected: &#xE415;&#xE331;
+
+=== i2n(nop)
+--- input
+user_agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)
+html: "&#xE63E;&#xE65C;"
+--- expected: &#xE63E;&#xE65C;
+

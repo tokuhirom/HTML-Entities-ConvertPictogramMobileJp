@@ -23,20 +23,32 @@ sub convert_pictogram_entities {
         if ($agent->is_softbank) {
             _convert_unicode('softbank', $2)
         } elsif ($agent->is_ezweb) {
-            join '', map { sprintf '<img localsrc="%d" />', $_ }
-              map { _ezuni2number($_) }
+            join '', map { _ezuni2tag($_) }
               map { unpack 'U*', $_ }
               split //, decode "x-utf8-kddi",
               encode( "x-utf8-kddi", chr( hex $2 ) );
-        } elsif ($agent->is_docomo && $agent->is_foma) {
-            _convert_unicode('docomo', $2)
-        } elsif (($agent->is_docomo && !$agent->is_foma) || $agent->is_airh_phone) {
+        } elsif ($agent->is_docomo) {
+            if ($agent->is_foma) {
+                _convert_unicode('docomo', $2);
+            } else {
+                _convert_sjis('docomo', $2);
+            }
+        } elsif ($agent->is_airh_phone) {
             _convert_sjis('docomo', $2);
         } else {
             $1;
         }
     }ge;
     $content;
+}
+
+sub _ezuni2tag {
+    my $unicode = shift;
+    if (my $number = _ezuni2number($unicode)) {
+        sprintf '<img localsrc="%d" />', $number;
+    } else {
+        sprintf '&#x%X;', $unicode;
+    }
 }
 
 sub _ezuni2number {
@@ -86,6 +98,26 @@ DoCoMo Mova/AirHPhone の場合には、 Unicode 数値文字参照ではなく 
 することに注意してください。これは、該当機種が、 SJIS の数値文字参照でないと表示できないためです。
 
 au の一部端末(W41CA, W32H など) では Unicode 数値文字参照が表示できないため、<img localsrc="" /> 形式を採用しています。
+
+=head1 METHODS
+
+=over 4
+
+=item convert_pictogram_entities
+
+絵文字変換します。
+
+=back
+
+=head1 CODE COVERAGE
+
+    ---------------------------- ------ ------ ------ ------ ------ ------ ------
+    File                           stmt   bran   cond    sub    pod   time  total
+    ---------------------------- ------ ------ ------ ------ ------ ------ ------
+    ...nvertPictogramMobileJp.pm  100.0  100.0    n/a  100.0  100.0   97.3  100.0
+    ...gramMobileJp/KDDITABLE.pm  100.0    n/a    n/a  100.0    n/a    2.7  100.0
+    Total                         100.0  100.0    n/a  100.0  100.0  100.0  100.0
+    ---------------------------- ------ ------ ------ ------ ------ ------ ------
 
 =head1 AUTHOR
 
