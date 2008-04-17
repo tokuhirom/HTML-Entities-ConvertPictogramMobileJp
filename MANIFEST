@@ -24,3 +24,4 @@ META.yml
 README
 t/00_compile.t
 t/01_simple.t
+t/02_mobileattribute.t

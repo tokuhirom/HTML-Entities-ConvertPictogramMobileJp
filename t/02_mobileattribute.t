@@ -3,8 +3,9 @@ use warnings;
 use Encode;
 use Test::Base;
 
-eval " use HTTP::MobileAgent ";
-plan skip_all => "HTTP::MobileAgent is not installed." if $@;
+eval " use HTTP::MobileAttribute ";
+plan skip_all => "HTTP::MobileAttribute is not installed." if $@;
+HTTP::MobileAttribute->load_plugins(qw/ IS IS::DoCoMo /);
 
 use HTML::Entities::ConvertPictogramMobileJp;
 
@@ -15,7 +16,7 @@ filters {
 sub convert {
     my $block = shift;
     convert_pictogram_entities(
-        mobile_agent => HTTP::MobileAgent->new( $block->{user_agent} ),
+        mobile_agent => HTTP::MobileAttribute->new( $block->{user_agent} ),
         html         => $block->{html},
     );
 }
