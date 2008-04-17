@@ -15,7 +15,12 @@ sub convert_pictogram_entities {
         mobile_agent => +{
             callbacks => {
                 'HTTP::MobileAgent or HTTP::MobileAttribute' => sub {
-                    ref $_[0] && ($_[0]->isa('HTTP::MobileAgent') || $_[0]->isa('HTTP::MobileAttribute'))
+                    my $pkg = ref $_[0];
+                    $pkg && (
+                        $_[0]->isa('HTTP::MobileAgent') ||
+                        $_[0]->isa('HTTP::MobileAttribute') ||
+                        $pkg =~ /^HTTP::MobileAttribute::Agent::/
+                    )
                 },
             },
         },
