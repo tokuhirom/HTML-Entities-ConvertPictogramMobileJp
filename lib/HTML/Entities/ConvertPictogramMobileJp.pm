@@ -12,7 +12,13 @@ our @EXPORT = qw/convert_pictogram_entities/;
 
 sub convert_pictogram_entities {
     validate(@_ => +{
-        mobile_agent => +{ isa => 'HTTP::MobileAgent' },
+        mobile_agent => +{
+            callbacks => {
+                'HTTP::MobileAgent or HTTP::MobileAttribute' => sub {
+                    ref $_[0] && ($_[0]->isa('HTTP::MobileAgent') || $_[0]->isa('HTTP::MobileAttribute'))
+                },
+            },
+        },
         html  => 1,
     });
     my %args = @_;
