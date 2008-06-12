@@ -2,7 +2,7 @@ use inc::Module::Install;
 name 'HTML-Entities-ConvertPictogramMobileJp';
 all_from 'lib/HTML/Entities/ConvertPictogramMobileJp.pm';
 
-requires 'Encode::JP::Mobile' => 0.24;
+requires 'Encode::JP::Mobile' => 0.25;
 eval " use HTTP::MobileAttribute ";
 if ($@) {
     requires 'HTTP::MobileAgent' => 0.26;
