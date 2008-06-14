@@ -5,6 +5,7 @@ use Test::Base;
 
 eval " use HTTP::MobileAttribute ";
 plan skip_all => "HTTP::MobileAttribute is not installed." if $@;
+plan skip_all => "your H::MA is too old. this test will skip" if $HTTP::MobileAttribute::VERSION < 0.11;
 HTTP::MobileAttribute->load_plugins(qw/ IS IS::DoCoMo /);
 
 use HTML::Entities::ConvertPictogramMobileJp;
