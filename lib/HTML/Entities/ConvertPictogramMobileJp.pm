@@ -9,6 +9,7 @@ use HTML::Entities::ConvertPictogramMobileJp::KDDITABLE;
 use File::ShareDir qw/dist_file/;
 use base 'Exporter';
 our @EXPORT = qw/convert_pictogram_entities/;
+use 5.008001;
 
 sub convert_pictogram_entities {
     validate(@_ => +{
