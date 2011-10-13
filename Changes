@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Entities::ConvertPictogramMobileJp
 
+0.09
+
+    - modernize package(no feature changes)
+
 0.08
 
     - skip some tests when your H::MA is too old

@@ -1,3 +1,4 @@
+^\.git/
 \bRCS\b
 \bCVS\b
 ^MANIFEST\.
@@ -10,11 +11,18 @@
 ^MakeMaker-\d
 \.gz$
 \.cvsignore
-^t/9\d_.*\.t
 ^t/perlcritic
 ^tools/
 \.svn/
 ^[^/]+\.yaml$
 ^[^/]+\.pl$
 ^\.shipit$
-^cover_db/
+\.sw[po]$
+^Build$
+^ppport.h$
+^xshelper.h$
+cover_db
+nytprof
+perltidy.ERR$
+^README.pod$
+^tags$

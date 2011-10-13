@@ -1,7 +1,7 @@
 package HTML::Entities::ConvertPictogramMobileJp;
 use strict;
 use warnings;
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 use Encode;
 use Encode::JP::Mobile;
 use Params::Validate;
